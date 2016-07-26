@@ -1,7 +1,0 @@
-Exception: STATUS_STACK_OVERFLOW at eip=6111295A
-eax=80010278 ebx=80010278 ecx=00000000 edx=00290000 esi=00093054 edi=00093058
-ebp=00000000 esp=00093000 program=C:\cygwin\home\matthew\codeforces\berkeley_test_contest\c.exe, pid 10592, thread unknown (0xC18)
-cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
-Stack trace:
-Frame     Function  Args
-End of stack trace

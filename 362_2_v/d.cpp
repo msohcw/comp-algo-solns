@@ -20,5 +20,6 @@ typedef map<string, int> msi;
 #define MEMSET_INF 127 // about 2B
 #define MEMSET_HALF_INF 63 // about 1B
 
+
 int main(){
 }
