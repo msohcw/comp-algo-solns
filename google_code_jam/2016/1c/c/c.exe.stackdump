@@ -1,0 +1,9 @@
+Exception: STATUS_STACK_OVERFLOW at eip=00401753
+eax=0205C150 ebx=0028CC9C ecx=00092C70 edx=00000000 esi=6130D77F edi=611D3FAE
+ebp=0028CC78 esp=0028CC64 program=C:\cygwin\home\matthew\google_code_jam_2016\1c\c\c.exe, pid 11968, thread unknown (0x2110)
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028CC78  00401753 (00000001, 0028CC9C, 80010100, 61008477)
+0028CD18  610084DC (00000000, 0028CD74, 61007520, 00000000)
+End of stack trace

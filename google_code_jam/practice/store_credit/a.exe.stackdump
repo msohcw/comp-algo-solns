@@ -1,0 +1,9 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=00401396
+eax=880675E8 ebx=00000002 ecx=8002CCF0 edx=0803A900 esi=6130D2CF edi=611D3FB2
+ebp=0028CC78 esp=0028CC20 program=C:\cygwin\home\matthew\a.exe, pid 18540, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028CC78  00401396 (00000001, 0028CC9C, 80010100, 61008477)
+0028CD18  610084DC (00000000, 0028CD74, 61007520, 00000000)
+End of stack trace
