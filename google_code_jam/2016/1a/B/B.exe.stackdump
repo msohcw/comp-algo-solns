@@ -1,0 +1,9 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=0040183C
+eax=0028FE14 ebx=00000003 ecx=00285914 edx=0028FD24 esi=00000003 edi=00285B10
+ebp=0028CC68 esp=00285AF0 program=C:\cygwin\home\matthew\google_code_jam_2016\1a\B\B.exe, pid 24896, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028CC68  0040183C (6130D737, 611D3FAE, 0028CD18, 610084DC)
+0028CD18  610084DC (00000000, 0028CD74, 61007520, 00000000)
+End of stack trace
