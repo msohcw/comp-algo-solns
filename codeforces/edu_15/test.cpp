@@ -26,6 +26,16 @@ typedef map<string, int> msi;
 
 int main(){
   srand(time(NULL));
-  printf("100000\n");
-  for(int i = 0; i < 100000; i++) printf("1 ");
+  printf("100000 100000\n");
+  int s = -10000000;
+  for(int i = 0; i < 100000; i++){
+    s += rand() % 1000;
+    printf("%d ", s);
+  }
+  printf("\n");
+  s = -10000000;
+  for(int i = 0; i < 100000; i++){
+    s += rand() % 1000;
+    printf("%d ", s);
+  } 
 }
