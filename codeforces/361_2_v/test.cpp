@@ -27,6 +27,11 @@ typedef map<string, int> msi;
 int main(){
   srand(time(NULL));
   // B
+  // printf("200000\n");
+  // for(int i = 0; i < 200000; i++) printf("%d ", rand()%200000);
+  // D
   printf("200000\n");
-  for(int i = 0; i < 200000; i++) printf("%d ", rand()%200000);
+  for(int i = 0; i < 200000; i++) printf("1 "); //printf("%d ", rand() % 100 - 50);
+  printf("\n");
+  for(int i = 0; i < 200000; i++) printf("1 ");//printf("%d ", rand() % 100 - 50);
 }
