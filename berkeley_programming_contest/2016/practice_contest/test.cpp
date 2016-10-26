@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <set>
+#include <map>
+#include <queue>
+
+using namespace std;
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> ii;
+typedef pair<pair<int, int>, int> iii;
+typedef vector<ii> vii;
+typedef set<int> si;
+typedef map<string, int> msi;
+
+#define I18F 1000000000000000000 // 10^18
+#define INF 2139062143
+#define MEMSET_INF 127 // about 2B
+#define MEMSET_HALF_INF 63 // about 1B
+
+
+int main(){
+  int t;
+  scanf("%d", &t);
+  printf("%d", t);
+  if(t == 1){
+    srand(time(NULL));
+    for(int i = 0; i < 1000000; ++i){
+      printf("%d ", rand()%INF);
+    }
+  }
+}
