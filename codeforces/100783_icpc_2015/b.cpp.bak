@@ -1,0 +1,143 @@
+#include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <set>
+#include <map>
+#include <queue>
+
+using namespace std;
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> ii;
+typedef pair<pair<int, int>, int> iii;
+typedef pair<int, pair<int, int> > i_ii;
+typedef vector<ii> vii;
+typedef set<int> si;
+typedef map<string, int> msi;
+
+#define INF 2000000000 // 2 billion
+#define MEMSET_INF 127 // about 2B
+#define MEMSET_HALF_INF 63 // about 1B
+
+int P, T;
+priority_queue<ii, vii, greater<ii> > Q;
+ii p[10010];
+//int ct[500010];
+//int used[500010];
+int visited[10010];
+//vector<i_ii> trail;
+vector<ii> trail[10010];
+int ct[10000][10000];
+int used[10000][10000];
+
+int dist;
+
+void augment(int at){
+  //printf("augmenting %d, %d, %d\n", at, p[at].second, p[at].first);
+  if(at == 0) return;
+  //used[p[at].second] = true;
+  used[p[at].first][at] = true;
+  augment(p[at].first);
+}
+
+void dfs(int at, int rem){
+  if(rem < 0) return;
+  if(at == P-1 && rem == 0){
+    augment(P-1);
+  }else{
+    visited[at] = true;
+    /*
+    int start = lower_bound(trail.begin(), trail.end(), make_pair(at, make_pair(0,0))) - trail.begin();
+    for(int i = start; i < trail.size(); ++i){
+      if(trail[i].first != at) break;
+      int next = trail[i].second.first;
+      if(next >= P) continue;
+      if(visited[next]) continue;
+      p[next] = make_pair(at, i);
+      dfs(next, rem - trail[i].second.second);
+    }
+    */
+    for(int i = 0; i < trail[at].size(); ++i){
+      int next = trail[at][i].first;
+      if(next >= P) continue;
+      if(visited[next]) continue;
+      p[next] = make_pair(at, i);
+      dfs(next, rem - trail[at][i].second);
+    }
+  }
+}
+
+int main(){
+  memset(p, 0, sizeof(p));
+  memset(visited, 0, sizeof(visited));
+  memset(ct, 0, sizeof(ct));
+  memset(used, 0, sizeof(used));
+  scanf("%d%d", &P, &T);
+
+  for(int i = 0; i < T; ++i){
+    int a, b, w;
+    scanf("%d%d%d", &a, &b, &w);
+    //trail.push_back(make_pair(a, make_pair(b, w)));
+    //trail.push_back(make_pair(b, make_pair(a, w)));
+    trail[a].push_back(make_pair(b, w));
+    trail[b].push_back(make_pair(a, w));
+  }
+  
+  //sort(trail.begin(), trail.end());
+  /*
+  for(int i = 1; i < trail.size(); ++i){
+    if(trail[i].first == trail[i-1].first && trail[i].second.first == trail[i-1].second.first){
+      if(trail[i].second.second == trail[i-1].second.second) ct[i]++;
+      trail[i-1].second.first = P;
+      trail[i].second.second = trail[i-1].second.second;
+    }
+  }
+  */
+  for(int i = 0; i < P; ++i){
+    for(int j = 1; j < trail[i].size(); ++i){
+      if(trail[i][j].second == trail[i][j-1].second) ct[i][j] += ct[i][j-1] + 1;
+      trail[i][j-1].first = P;
+      trail[i][j].second = trail[i][j-1].second;
+    }
+  }
+
+  Q.push(make_pair(0, 0));
+  while(!Q.empty()){
+    ii top = Q.top();
+    Q.pop();
+    printf("at %d\n", top.second);
+    if(top.second == P-1){
+      dist = top.first;
+      break;
+    }else{
+      /*
+      int start = lower_bound(trail.begin(), trail.end(), make_pair(top.second, make_pair(0,0))) - trail.begin();
+      for(int i = start; i < trail.size(); ++i){
+        if(trail[i].first != top.second) break;
+        if(trail[i].second.first >= P) continue;
+        Q.push(make_pair(trail[i].second.second + top.first, trail[i].second.first));
+      }
+      */
+        for(int i = 0; i < trail[top.second].size(); ++i){
+          if(trail[top.second][i].first >= P) continue;
+          Q.push(make_pair(trail[top.second][i].second + top.first, trail[top.second][i].first));
+        }
+    }
+  }
+
+  printf("%d\n", dist); 
+  dfs(0, dist);
+  int cost = 0;
+  //for(int i = 0; i < trail.size(); ++i) if(used[i]) cost += 2 * trail[i].second.second * (ct[i]+1);
+  for(int i = 0; i < P; ++i){
+    for(int j = 0; j < trail[i].size(); ++j){
+      if(used[i][j]) cost += 2 * trail[i][j].second * (ct[i][j]+1);
+    }
+  }
+  printf("%d\n", cost);
+}
